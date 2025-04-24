@@ -5,7 +5,18 @@ export async function onRequestPost(context: {
   request: Request;
   env: { CFP_PASSWORD?: string };
 }): Promise<Response> {
+  // Handle whether password env variable exists or not
   const { request, env } = context;
+  // Handle whether password env variable exists or not
+  if (!env.CFP_PASSWORD) {
+    return new Response('No password set for this site.', {
+      status: 500,
+      headers: {
+        'Content-Type': 'text/plain',
+        'Cache-Control': 'no-cache'
+      }
+    });
+  }
   const body = await request.formData();
   const { password, redirect } = Object.fromEntries(body);
   const hashedPassword = await sha256(password.toString());

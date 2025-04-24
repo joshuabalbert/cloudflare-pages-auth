@@ -8,6 +8,10 @@ export async function sha256(str: string): Promise<string> {
 }
 
 export async function getCookieKeyValue(password?: string): Promise<string> {
+  // deal with empty password
+  if (!password) {
+    return `${CFP_COOKIE_KEY}=`;
+  }
   const hash = await sha256(password);
   return `${CFP_COOKIE_KEY}=${hash}`;
 }

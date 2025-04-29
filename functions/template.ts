@@ -46,6 +46,8 @@ export function getTemplate({
           <hgroup>
             <h1>PhaseFive Restricted Access</h1>
             <h2>Please enter your password for this site.</h2>
+            <h2>Note: This resource is best experienced on a larger screen, not a handheld device.</h2>
+            <h2>Note: Data here is property of the PhaseFive Corporation and may not be redistributed.</h2>
           </hgroup>
           ${withError ? `<p class="error">Incorrect password, please try again.</p>` : ''}
           <form method="post" action="/cfp_login">
